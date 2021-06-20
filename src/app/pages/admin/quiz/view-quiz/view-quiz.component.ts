@@ -6,67 +6,77 @@ import { SubjectService } from 'src/app/services/subject.service';
 @Component({
   selector: 'app-view-quiz',
   templateUrl: './view-quiz.component.html',
-  styleUrls: ['./view-quiz.component.css']
+  styleUrls: ['./view-quiz.component.css'],
 })
 export class ViewQuizComponent implements OnInit {
-
-  quizzes=[];
+  quizzes = [];
   sid;
-  subjectSelected:number;
+  subjectSelected: number;
   subjects = [];
 
   constructor(
     private _quiz: QuizService,
-    private _router:Router,
-    private _route:ActivatedRoute,
-    private _subject:SubjectService,
-  ) { }
+    private _router: Router,
+    private _route: ActivatedRoute,
+    private _subject: SubjectService
+  ) {}
 
   ngOnInit(): void {
-
-    this._route.params.subscribe((params)=>{
-      this.sid=params.sid;
+    this._route.params.subscribe((params) => {
+      this.sid = params.sid;
       console.log(this.sid);
       this._quiz.getQuizzesOfSubCategory(this.sid).subscribe(
-        (data:any)=>{
-          this.quizzes=data;
+        (data: any) => {
+          this.quizzes = data;
           console.log(this.quizzes);
         },
-        (error)=>{
+        (error) => {
           console.log(error.error.message);
         }
       );
-      
-
     });
 
-      //subject
-      this._subject.subjects().subscribe(
-        (data:any)=>{
-          console.log(data);
-          this.subjects=data;
-        },
-        (error)=>{
-          console.log(error.error.message);
-          alert(error.error.message);
-        }
-      );
+    //subject
+    this._subject.subjects().subscribe(
+      (data: any) => {
+        this.subjects = data;
+      },
+      (error) => {
+        console.log(error.error.message);
+        alert(error.error.message);
+      }
+    );
+  }
 
-      
-}
+  onSubjectSelected(subjectSelected: any): void {
+    this._route.params.subscribe((params) => {
+      this.sid = params.sid;
+      console.log(this.sid);
+      this._quiz
+        .getQuizBySubjectIdAndSubCategoryId(subjectSelected, this.sid)
+        .subscribe(
+          (data: any) => {
+            this.quizzes = data;
+          },
+          (error) => {
+            console.log(error.error.message);
+          }
+        );
+    });
 
-onSubjectSelected(subjectSelected:any):void {
-
-  this._quiz.getQuizBySubjectId(subjectSelected).subscribe(
-    (data:any)=>{
-      this.quizzes=data;
-      console.warn(this.quizzes);
-    },
-    (error)=>{
-      console.log(error.error.message);
+    if (subjectSelected == 0) {
+      this._route.params.subscribe((params) => {
+        this.sid = params.sid;
+        this._quiz.getQuizzesOfSubCategory(this.sid).subscribe(
+          (data: any) => {
+            this.quizzes = data;
+            console.log(this.quizzes);
+          },
+          (error) => {
+            console.log(error.error.message);
+          }
+        );
+      });
     }
-  );
-
-}
-
+  }
 }
