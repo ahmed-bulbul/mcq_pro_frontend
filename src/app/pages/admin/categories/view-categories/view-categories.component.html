@@ -1,0 +1,33 @@
+<mat-card class="mt20">
+    <h1>সমস্ত ক্যাটাগরি </h1>
+    <!-- <sa-spinner-dotted *ngIf="showSpinner"></sa-spinner-dotted> -->
+    <mat-list>
+  
+        <div class="bootstrap-warpper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4" *ngFor="let c of categories">
+                        
+                        <mat-card [routerLink]="'/admin/subCategory/'+c.cid" class="cursor background">    
+                            <mat-card-header>
+                                <mat-card-title>
+                                    {{c.title}}
+                                </mat-card-title>
+                            </mat-card-header>
+                            <mat-card-content class="ml20">
+                                <p>{{c.description}}</p>
+                            </mat-card-content>
+                            
+                        </mat-card>
+                        <br> <br> <br>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </mat-list>
+
+    <div class="container text-center mt20">
+        <button routerLink="/admin/add-category" mat-raised-button color="primary">নতুন ক্যাটাগরি অ্যাড করুন </button>
+    </div>
+</mat-card>

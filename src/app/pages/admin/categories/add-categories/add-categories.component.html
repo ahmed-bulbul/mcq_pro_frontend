@@ -1,0 +1,31 @@
+<mat-card>
+    <h1>নতুন ক্যাটাগরি অ্যাড করুন</h1>
+    <!-- <mat-spinner *ngIf="showSpinner"></mat-spinner> -->
+    
+<!-- {{category | json}} -->
+    <mat-card-content>
+        <div class="bootstrap-wrapper">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    
+                    <form (ngSubmit)="formSubmit()">
+                        <mat-form-field class="w100" appearance="outline">
+                            <mat-label>টাইটেল </mat-label>
+                            <input type="text" name="title" matInput placeholder="এখানে লিখুন " autofocus [(ngModel)]="category.title" required>
+                        </mat-form-field>
+
+                        <mat-form-field class="w100" appearance="outline">
+                            <mat-label>ডেস্ক্রিপশন</mat-label>
+                            <textarea name="description" matInput placeholder="এখানে লিখুন " rows="15"  [(ngModel)]="category.description"></textarea>
+                        </mat-form-field>
+
+                        <div class="container text-center mt15">
+                            <sa-spinner-dotted *ngIf="showSpinner"></sa-spinner-dotted> <br>
+                            <button mat-raised-button color="primary">সাবমিট</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
