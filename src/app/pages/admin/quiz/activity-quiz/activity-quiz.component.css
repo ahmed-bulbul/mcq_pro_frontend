@@ -3,6 +3,9 @@
     cursor: pointer;
     color: white;
 }
+.live h1:hover{
+    color: rgba(0, 0, 0, 0.671);
+}
 .truncate{
     display: block;
     white-space: nowrap;
@@ -14,3 +17,6 @@
     max-width: 200px;
   }
   
+.cursor{
+    cursor: pointer;
+}  

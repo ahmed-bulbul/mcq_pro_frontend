@@ -10,7 +10,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { LoginComponent } from './pages/login/login.component';
 import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatFormFieldControl, MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -33,10 +33,12 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { DialogueComponent } from './components/dialogue/dialogue.component';
 import { ViewSubCategoriesComponent } from './pages/admin/subCategory/view-sub-categories/view-sub-categories.component';
 import { AddSubCategoriesComponent } from './pages/admin/subCategory/add-sub-categories/add-sub-categories.component';
-import { AddQuizComponent } from './pages/admin/quiz/add-quiz/add-quiz.component';
 import { ViewQuizComponent } from './pages/admin/quiz/view-quiz/view-quiz.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { ActivityQuizComponent } from './pages/admin/quiz/activity-quiz/activity-quiz.component';
+import { AddQuizComponent } from './pages/admin/quiz/add-quiz/add-quiz.component';
+import {MatSelectModule} from '@angular/material/select';
+
 
 
 @NgModule({
@@ -78,7 +80,8 @@ import { ActivityQuizComponent } from './pages/admin/quiz/activity-quiz/activity
     MatSidenavModule,
     SpinnersAngularModule,
     MatDialogModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatSelectModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

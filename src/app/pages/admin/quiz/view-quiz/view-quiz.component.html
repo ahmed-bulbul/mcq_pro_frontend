@@ -1,3 +1,8 @@
+
+<div class="container mt20">
+    <button [routerLink]="'/admin/add-quiz/'+sid" mat-raised-button color="primary">কুইজ অ্যাড করুন </button>
+</div>
+
 <mat-card class="mt10 mr20 ml20" *ngFor="let q of quizzes">
     <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
@@ -9,7 +14,8 @@
         </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content class="desml57">
-        <p>{{q.description}}</p>
+        <p>{{q.description}}  </p>
+        <p> <b> বিষয়: {{q.subject.name}}  </b> </p>
     </mat-card-content>
     <mat-card-action>
         <button mat-flat-button color="primary"
@@ -28,6 +34,4 @@
     </mat-card-action>
 </mat-card>
 
-<div class="container text-center mt20">
-    <button routerLink="/admin/add-quiz" mat-raised-button color="primary">Add New Quiz</button>
-</div>
+

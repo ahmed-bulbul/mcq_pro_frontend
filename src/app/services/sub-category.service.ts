@@ -14,6 +14,11 @@ export class SubCategoryService {
     return this._http.get(`${baseUrl}/subCategory/category/${categoryId}`);
   }
 
+  //get subcategory by Id
+  public getSubcategoryById(subCatId){
+    return this._http.get(`${baseUrl}/subCategory/${subCatId}`);
+  }
+
   
 
 
