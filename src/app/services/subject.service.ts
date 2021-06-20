@@ -13,4 +13,6 @@ export class SubjectService {
   public subjects(){
     return this._http.get(`${baseUrl}/subject/`);
   }
+
+  
 }

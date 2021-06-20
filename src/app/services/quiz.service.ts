@@ -24,6 +24,11 @@ export class QuizService {
     return this._http.get(`${baseUrl}/quiz/subCategory/${sid}`);
   }
 
+  //get quizBySubjectId
+  public getQuizBySubjectId(subjectId){
+    return this._http.get(`${baseUrl}/quiz/subject/${subjectId}`);
+  }
+
 
 
 }

@@ -71,6 +71,10 @@ const routes: Routes = [
         path:'add-quiz/:sid',
         component:AddQuizComponent,
       },
+      {
+        path:'quiz/subject/:subjectId',
+        component:ViewQuizComponent
+      }
     ],
 
   },

@@ -1,37 +1,70 @@
 
-<div class="container mt20">
-    <button [routerLink]="'/admin/add-quiz/'+sid" mat-raised-button color="primary">কুইজ অ্যাড করুন </button>
+
+<div class="bootstrap-wrapper">
+    <div class="container-fluid">
+        <div class="row ml10">
+            <div class="col-md-6 mt20">
+                <button [routerLink]="'/admin/add-quiz/'+sid" mat-raised-button color="primary">কুইজ অ্যাড করুন</button>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field appearance="fill" class="mt20 w100" *ngIf="subjects" >
+                    <mat-label>সকল বিষয়</mat-label>
+                    <mat-select [(ngModel)]='subjectSelected' (ngModelChange)='onSubjectSelected($event)' >
+                        <mat-option *ngFor= 'let subject of subjects'  [value]="subject.subjectId">
+                            {{subject.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+           
+            </div>
+            
+        </div>
+        <div class="row" *ngIf="quizzes">
+            <div class="col-md-12">
+                <mat-card class="mt10 mr20 ml20" *ngFor="let q of quizzes">
+                    <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title>
+                            {{q.title}}
+                        </mat-card-title>
+                        <mat-card-subtitle>
+                            {{q.subCategory.title}}
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content class="desml57">
+                        <p>{{q.description}}  </p>
+                        <p> <b> বিষয়: {{q.subject.name}}  </b> </p>
+                    </mat-card-content>
+                    <mat-card-action>
+                        <button mat-flat-button color="primary"
+                         [routerLink]="'/admin/view-questions/' + q.qId +'/' + q.title">Questions</button>
+                        <button mat-stroked-button color="primary" class="ml20">Max Marks: {{q.maxMarks}}</button>
+                        <button mat-stroked-button color="primary" class="ml20">Questions: {{q.numberOfQuestions}}</button>
+                        <!-- active field -->
+                        <mat-slide-toggle
+                        name="active"
+                        [(ngModel)]="q.active"
+                        class="ml20" >
+                    </mat-slide-toggle>
+                        <button [routerLink]=" '/admin/quiz/'+q.qId " mat-flat-button color="primary" class="ml20">Update</button>
+                        <button mat-flat-button color="primary" class="ml20">Attempts</button>
+                        <button mat-flat-button color="warn" class="ml10" (click)="deleteQuiz(q.qId)">Delete</button>
+                    </mat-card-action>
+                </mat-card>
+                <br>
+            </div>
+            <br>
+
+            <mat-card *ngIf="quizzes.length == 0">
+                <mat-card-content >
+                    <h1>দুঃখিত !! কোন কুইজ  পাওয়া যায় নি । </h1>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
 </div>
 
-<mat-card class="mt10 mr20 ml20" *ngFor="let q of quizzes">
-    <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>
-            {{q.title}}
-        </mat-card-title>
-        <mat-card-subtitle>
-            {{q.subCategory.title}}
-        </mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content class="desml57">
-        <p>{{q.description}}  </p>
-        <p> <b> বিষয়: {{q.subject.name}}  </b> </p>
-    </mat-card-content>
-    <mat-card-action>
-        <button mat-flat-button color="primary"
-         [routerLink]="'/admin/view-questions/' + q.qId +'/' + q.title">Questions</button>
-        <button mat-stroked-button color="primary" class="ml20">Max Marks: {{q.maxMarks}}</button>
-        <button mat-stroked-button color="primary" class="ml20">Questions: {{q.numberOfQuestions}}</button>
-        <!-- active field -->
-        <mat-slide-toggle
-        name="active"
-        [(ngModel)]="q.active"
-        class="ml20" >
-    </mat-slide-toggle>
-        <button [routerLink]=" '/admin/quiz/'+q.qId " mat-flat-button color="primary" class="ml20">Update</button>
-        <button mat-flat-button color="primary" class="ml20">Attempts</button>
-        <button mat-flat-button color="warn" class="ml10" (click)="deleteQuiz(q.qId)">Delete</button>
-    </mat-card-action>
-</mat-card>
+
+
 
 

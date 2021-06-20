@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuizService } from 'src/app/services/quiz.service';
+import { SubjectService } from 'src/app/services/subject.service';
 
 @Component({
   selector: 'app-view-quiz',
@@ -11,11 +12,14 @@ export class ViewQuizComponent implements OnInit {
 
   quizzes=[];
   sid;
+  subjectSelected:number;
+  subjects = [];
 
   constructor(
     private _quiz: QuizService,
     private _router:Router,
     private _route:ActivatedRoute,
+    private _subject:SubjectService,
   ) { }
 
   ngOnInit(): void {
@@ -31,9 +35,38 @@ export class ViewQuizComponent implements OnInit {
         (error)=>{
           console.log(error.error.message);
         }
-      )
+      );
+      
+
     });
-  
+
+      //subject
+      this._subject.subjects().subscribe(
+        (data:any)=>{
+          console.log(data);
+          this.subjects=data;
+        },
+        (error)=>{
+          console.log(error.error.message);
+          alert(error.error.message);
+        }
+      );
+
+      
+}
+
+onSubjectSelected(subjectSelected:any):void {
+
+  this._quiz.getQuizBySubjectId(subjectSelected).subscribe(
+    (data:any)=>{
+      this.quizzes=data;
+      console.warn(this.quizzes);
+    },
+    (error)=>{
+      console.log(error.error.message);
+    }
+  );
+
 }
 
 }
