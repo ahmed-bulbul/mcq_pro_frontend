@@ -1,0 +1,22 @@
+.live{
+    background-color: #ff6c2c;
+    cursor: pointer;
+    color: white;
+}
+.live h1:hover{
+    color: rgba(0, 0, 0, 0.671);
+}
+.truncate{
+    display: block;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.example-card {
+    max-width: 200px;
+  }
+  
+.cursor{
+    cursor: pointer;
+}  

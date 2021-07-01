@@ -38,6 +38,19 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { ActivityQuizComponent } from './pages/admin/quiz/activity-quiz/activity-quiz.component';
 import { AddQuizComponent } from './pages/admin/quiz/add-quiz/add-quiz.component';
 import {MatSelectModule} from '@angular/material/select';
+import { AddQuestionComponent } from './pages/admin/questions/add-question/add-question.component';
+import { ViewQuestionsComponent } from './pages/admin/questions/view-questions/view-questions.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { UserSidebarComponent } from './pages/user/user-sidebar/user-sidebar.component';
+import { UserHomeComponent } from './pages/user/user-home/user-home.component';
+import { UserSubCategoryComponent } from './pages/user/user-sub-category/user-sub-category.component';
+import { UserActivityComponent } from './pages/user/user-activity/user-activity.component';
+import { UserLoadQuizComponent } from './pages/user/user-load-quiz/user-load-quiz.component';
+import { UserStartComponent } from './pages/user/user-start/user-start.component';
+import { UserInstructionsComponent } from './pages/user/user-instructions/user-instructions.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 
@@ -61,7 +74,16 @@ import {MatSelectModule} from '@angular/material/select';
     AddSubCategoriesComponent,
     AddQuizComponent,
     ViewQuizComponent,
-    ActivityQuizComponent
+    ActivityQuizComponent,
+    AddQuestionComponent,
+    ViewQuestionsComponent,
+    UserSidebarComponent,
+    UserHomeComponent,
+    UserSubCategoryComponent,
+    UserActivityComponent,
+    UserLoadQuizComponent,
+    UserStartComponent,
+    UserInstructionsComponent
   ],
   imports: [
     BrowserModule,
@@ -82,6 +104,11 @@ import {MatSelectModule} from '@angular/material/select';
     MatDialogModule,
     MatSlideToggleModule,
     MatSelectModule,
+    CKEditorModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatProgressSpinnerModule,
+    
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

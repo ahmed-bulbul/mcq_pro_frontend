@@ -1,4 +1,4 @@
-
+<!-- 
       
       <div class="bootstrap-wrapper">
         <div class="container-fluid">
@@ -14,4 +14,20 @@
     </div>
     
 
-  
+   -->
+
+   <div class="bootstrap-wrapper">
+      
+            <mat-sidenav-container >
+                    <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+                        <app-sidebar></app-sidebar>
+                    </mat-sidenav>
+                    <mat-sidenav-content>
+                        <button (click)="sidenav.toggle()"> <mat-icon>menu</mat-icon></button>
+                        <router-outlet></router-outlet>
+                    </mat-sidenav-content>
+              
+            </mat-sidenav-container>
+   </div>
+
+   

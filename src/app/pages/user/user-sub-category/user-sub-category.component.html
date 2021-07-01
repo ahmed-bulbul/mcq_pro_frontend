@@ -1,0 +1,38 @@
+<mat-card class="mt20">
+    <!-- <sa-spinner-dotted *ngIf="showSpinner"></sa-spinner-dotted> -->
+    <mat-list>
+  
+        <div class="bootstrap-warpper">
+            <div class="container-fluid">
+                <div class="row" *ngIf="subCategories">
+                    <div class="col-md-4" *ngFor="let sc of subCategories">
+                        <!-- <mat-card class="cursor background" [routerLink]="'/admin/quiz/activity/'+sc.sid"> -->
+                        <mat-card class="cursor background" [routerLink]="'/user-dashboard/quiz/activity/'+sc.sid">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    {{sc.title}}
+                                </mat-card-title>
+                            </mat-card-header>
+                            <mat-card-content class="ml20">
+                                <p>{{sc.description}}</p>
+                            </mat-card-content>
+                            
+                        </mat-card>
+                        <br> <br> <br>
+                    </div>
+
+                    <div class="col-md-12" *ngIf="subCategories.length == 0">
+                        <mat-card>
+                            <mat-card-content>
+                                <h1>দুঃখিত !! কোন সাব ক্যাটাগরি পাওয়া যায় নি । </h1>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </mat-list>
+
+ 
+</mat-card>

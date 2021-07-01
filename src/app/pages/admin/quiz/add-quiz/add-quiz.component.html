@@ -1,5 +1,5 @@
 
-<mat-card>
+<mat-card class="mt20">
     <h1>Add New Quiz</h1>
     <div class="row">
         <div class="container">
@@ -75,6 +75,14 @@
                         </mat-select>
                     </mat-form-field>
 
+                    <!-- start date -->
+                    <mat-form-field appearance="fill" class="mt20 w100">
+                        <mat-label>Quiz Start Date</mat-label>
+                        <input  matInput [matDatepicker]="picker"  [(ngModel)]="quizData.startDate" name="startDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+
 
                     <div class="container text-center">
                         <button type="submit" mat-raised-button color="primary">Save</button>
@@ -87,3 +95,6 @@
     </div>
 </mat-card>
 
+<br>
+<br>
+<br>

@@ -36,7 +36,7 @@
                     </mat-card-header>
                     <mat-card-content class="desml57">
                         <p>{{q.description}}  </p>
-                        <p> <b> বিষয়: {{q.subject.name}}  </b> </p>
+                        <p> <b> বিষয়: {{q.subject.name}}  </b> <span></span> <span style="color: red;"><b>(পরীক্ষা শুরু  : {{q.startDate}})</b></span> </p>
                     </mat-card-content>
                     <mat-card-action>
                         <button mat-flat-button color="primary"
@@ -50,13 +50,14 @@
                         class="ml20" >
                     </mat-slide-toggle>
                         <button [routerLink]=" '/admin/quiz/'+q.qId " mat-flat-button color="primary" class="ml20">Update</button>
-                        <button mat-flat-button color="primary" class="ml20">Attempts</button>
+                        <button [routerLink]="" mat-flat-button color="primary" class="ml20">Attempted</button>
                         <button mat-flat-button color="warn" class="ml10" (click)="deleteQuiz(q.qId)">Delete</button>
                     </mat-card-action>
                 </mat-card>
                 <br>
             </div>
             <br>
+            
 
             <mat-card *ngIf="quizzes.length == 0">
                 <mat-card-content >
@@ -64,10 +65,14 @@
                 </mat-card-content>
             </mat-card>
         </div>
+        
     </div>
+    
 </div>
 
-
+<br>
+    <br>
+    <br>
 
 
 

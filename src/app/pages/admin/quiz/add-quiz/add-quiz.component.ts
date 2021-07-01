@@ -22,7 +22,8 @@ export class AddQuizComponent implements OnInit {
     description: '',
     maxMarks: '',
     numberOfQuestions: '',
-    active: true,
+    active: false,
+    startDate:'',
     subCategory: {
       sid: '',
     },
@@ -90,6 +91,7 @@ export class AddQuizComponent implements OnInit {
         maxMarks: '',
         numberOfQuestions: '',
         active: true,
+        startDate:'',
         subCategory: {
           sid: '',
         },

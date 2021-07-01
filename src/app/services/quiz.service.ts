@@ -29,6 +29,20 @@ export class QuizService {
     return this._http.get(`${baseUrl}/quiz/subject/${subjectId}/subCategory/${subCategoryId}`);
   }
 
+  //get active quizzes
+  public getActiveQuizzes(){
+    return this._http.get(`${baseUrl}/quiz/active`);
+  }
+
+  //get active quizzes of category
+  public getActiveQuizzesOfCategory(sid){
+    return this._http.get(`${baseUrl}/quiz/subCategory/active/${sid}`);
+  }
+
+    //get the single quiz
+    public getQuiz(qId){
+      return this._http.get(`${baseUrl}/quiz/${qId}`);
+    }
 
 
 }

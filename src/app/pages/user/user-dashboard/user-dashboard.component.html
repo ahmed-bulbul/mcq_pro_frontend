@@ -1,1 +1,13 @@
-<h1>Welcome to normal user dashboard</h1>
+<div class="bootstrap-wrapper">
+      
+    <mat-sidenav-container >
+            <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+                <app-user-sidebar></app-user-sidebar>
+            </mat-sidenav>
+            <mat-sidenav-content>
+                <button (click)="sidenav.toggle()"> <mat-icon>menu</mat-icon></button>
+                <router-outlet></router-outlet>
+            </mat-sidenav-content>
+      
+    </mat-sidenav-container>
+</div>
