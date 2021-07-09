@@ -44,6 +44,11 @@ export class QuizService {
       return this._http.get(`${baseUrl}/quiz/${qId}`);
     }
 
+    //get Archive Quiz
+    public getArchiveQuiz(subCategoryId){
+      return this._http.get(`${baseUrl}/quiz/archive/${subCategoryId}`);
+    }
+
 
 
 }

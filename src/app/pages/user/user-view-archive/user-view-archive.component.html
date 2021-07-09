@@ -1,0 +1,60 @@
+
+<div class="bootstrap-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                <!-- instructions -->
+               
+            </div>
+            <div class="col-md-8">
+                <!-- questions -->
+                <ng-container *ngIf="questions">
+                    <h1 *ngIf="questions[0].quiz " class="mt20">প্রশ্ন : <b>{{ questions[0].quiz.title }}</b></h1>
+                </ng-container>
+
+                <mat-card *ngFor="let q of questions;let i=index" class="mt10">
+
+                    <mat-card-content>
+                      <p><b>Q{{i+1}}) </b> <span [innerHTML]="q.content"></span> </p>
+                   
+
+                        <mat-divider></mat-divider>
+                 
+
+
+                        <div class="row mt20">
+                            <div class="col-xs-6 col-md-6">
+                                <p>ক) {{q.option1}}</p>
+                            </div>
+                            <div class="col-xs-6 col-md-6 ">
+                                <p>খ) {{q.option2}}</p>
+                            </div>
+                        </div>
+
+                        <div class="row mt20">
+                            <div class="col-xs-6 col-md-6 ">
+                                <p>গ) {{q.option3}}</p>
+                            </div>
+                            <div class="col-xs-6 col-md-6 ">
+                                <p>ঘ) {{q.option4}}</p>
+                            </div>
+                        </div>
+                        <div class="row mt20">
+                            <mat-card-content class="ml20">
+                                <button mat-raised-button (click)="answer(q.answer)">উত্তর</button>
+                                <button mat-raised-button (click)="explain(q.explanation)">ব্যাখ্যা </button>
+                                <button mat-raised-button>কমেন্ট করুন </button>
+                                <button mat-raised-button (click)="favorite(q.quesId)">ফেভারিট</button>
+                            </mat-card-content>
+                            
+                        </div>
+                    </mat-card-content>
+
+                </mat-card>
+
+      
+            </div>
+            
+        </div>
+    </div>
+</div>

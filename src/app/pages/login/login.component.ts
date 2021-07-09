@@ -3,7 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import {MatDialog} from '@angular/material/dialog';
-import { DialogueComponent } from 'src/app/components/dialogue/dialogue.component';
+import { DialogueComponent } from 'src/app/components/dialo/notification/dialogue.component';
 
 
 @Component({

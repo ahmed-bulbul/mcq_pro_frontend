@@ -30,7 +30,7 @@ import { AddCategoriesComponent } from './pages/admin/categories/add-categories/
 import { ViewCategoriesComponent } from './pages/admin/categories/view-categories/view-categories.component';
 import { SpinnersAngularModule } from 'spinners-angular';
 import {MatDialogModule} from '@angular/material/dialog';
-import { DialogueComponent } from './components/dialogue/dialogue.component';
+import { DialogueComponent } from './components/dialo/notification/dialogue.component';
 import { ViewSubCategoriesComponent } from './pages/admin/subCategory/view-sub-categories/view-sub-categories.component';
 import { AddSubCategoriesComponent } from './pages/admin/subCategory/add-sub-categories/add-sub-categories.component';
 import { ViewQuizComponent } from './pages/admin/quiz/view-quiz/view-quiz.component';
@@ -52,6 +52,10 @@ import { UserStartComponent } from './pages/user/user-start/user-start.component
 import { UserInstructionsComponent } from './pages/user/user-instructions/user-instructions.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
+import { UserArchiveComponent } from './pages/user/user-archive/user-archive.component';
+import { UserViewArchiveComponent } from './pages/user/user-view-archive/user-view-archive.component';
+import { ExplanationComponent } from './components/dialo/explanation/explanation.component';
+
 
 
 @NgModule({
@@ -83,7 +87,11 @@ import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
     UserActivityComponent,
     UserLoadQuizComponent,
     UserStartComponent,
-    UserInstructionsComponent
+    UserInstructionsComponent,
+    UserArchiveComponent,
+    UserViewArchiveComponent,
+    ExplanationComponent,
+
   ],
   imports: [
     BrowserModule,

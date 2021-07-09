@@ -15,12 +15,14 @@ import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { UserActivityComponent } from './pages/user/user-activity/user-activity.component';
+import { UserArchiveComponent } from './pages/user/user-archive/user-archive.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import { UserHomeComponent } from './pages/user/user-home/user-home.component';
 import { UserInstructionsComponent } from './pages/user/user-instructions/user-instructions.component';
 import { UserLoadQuizComponent } from './pages/user/user-load-quiz/user-load-quiz.component';
 import { UserStartComponent } from './pages/user/user-start/user-start.component';
 import { UserSubCategoryComponent } from './pages/user/user-sub-category/user-sub-category.component';
+import { UserViewArchiveComponent } from './pages/user/user-view-archive/user-view-archive.component';
 import { AdminGuard } from './services/admin.guard';
 import { NormalGuard } from './services/normal.guard';
 
@@ -119,7 +121,15 @@ const routes: Routes = [
       },
       {
         path:'instructions/:qid',
-        component:UserInstructionsComponent 
+        component:UserInstructionsComponent,
+      },
+      {
+        path:'archive/:sid',
+        component:UserArchiveComponent,
+      },
+      {
+        path:'archive/view/:qid',
+        component:UserViewArchiveComponent,
       },
       
 
