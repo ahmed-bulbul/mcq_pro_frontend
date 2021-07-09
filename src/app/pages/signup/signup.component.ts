@@ -29,9 +29,6 @@ export class SignupComponent implements OnInit {
   }
 
   formSubmit(){
-    this.showSpinner=true;
-
-    console.log(this.user);
 
     //validate
     if(this.user.username=='' ||this.user.username==null ){

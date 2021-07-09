@@ -1,6 +1,9 @@
 import { LocationStrategy } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ExamHistoryService } from 'src/app/services/exam-history.service';
+import { LoginService } from 'src/app/services/login.service';
+import { MarksService } from 'src/app/services/marks.service';
 import { QuestionService } from 'src/app/services/question.service';
 import Swal from 'sweetalert2';
 
@@ -23,30 +26,83 @@ export class UserStartComponent implements OnInit {
 
   timer: any;
 
+  curUser;
+
+  examHistory = {
+    givenAnswer: '',
+    correctAnswer:'',
+    question: {
+      quesId: '',
+    },
+    user:{
+      id: '',
+    },
+    quiz:{
+      qId:'',
+    }
+  };
+
+  marks = {
+    
+      totalMarks:'',
+      correctAnswer:'',
+      wrongAnswer:'',
+      attempted:'',
+      quiz:{
+          qId:'',
+      },
+      user:{
+          id:'',
+      }
+  };
+
+
   constructor(
     private LocationSt: LocationStrategy,
     private _route: ActivatedRoute,
-    private _question: QuestionService
+    private _question: QuestionService,
+    private _currentUser: LoginService,
+    private _examHistory: ExamHistoryService,
+    private _mark: MarksService,
+    private _router:Router,
   ) {}
 
   ngOnInit(): void {
+
     this.preveventBackButton();
     this.qid = this._route.snapshot.params.qid;
-    console.log(this.qid);
+
+    //getCurrent User
+    this._currentUser.getCurrentUser().subscribe(
+      (data:any) =>{
+        this.curUser=data;
+        console.log(this.examHistory.user);
+        
+      },
+      (error)=>{
+        console.log(error.error.message);
+        
+      }
+    );
+
+    //load question if exam was not given
     this.loadQuestions();
+
   }
+
+
   loadQuestions() {
     this._question.getQuestionsOfQuizForTest(this.qid).subscribe(
       (data: any) => {
+        
         this.questions = data;
-
         this.timer = this.questions.length * 2 * 60;
 
         this.questions.forEach((q) => {
-          q['givenAnswer'] = '';
+          q['givenAnswer'] = '';  
+          
         });
 
-        console.log(this.questions);
         this.startTimer();
       },
       (error) => {
@@ -54,6 +110,7 @@ export class UserStartComponent implements OnInit {
         Swal.fire('Error', 'Error in loading question of quiz', 'error');
       }
     );
+    
   }
 
   preveventBackButton() {
@@ -72,7 +129,29 @@ export class UserStartComponent implements OnInit {
     }).then((e) => {
       if (e.isConfirmed) {
         this.evalQuiz();
+
+         //calculate marks
+        this.calculatemarks();
+
       }
+    });
+  }
+
+  //calculate marks
+  calculatemarks(){
+
+    this.marks.correctAnswer=this.correctAnswer.toString();
+    this.marks.totalMarks=this.marksGot.toString();
+    this.marks.wrongAnswer=this.wrongAnswer.toString();
+    this.marks.attempted=this.attempted.toString();
+
+
+    this._mark.addMarks(this.marks).subscribe((data:any)=>{
+      console.log(this.marks);
+    },
+    (error)=>{
+      console.log(error);
+      
     });
   }
 
@@ -100,11 +179,34 @@ export class UserStartComponent implements OnInit {
     this.isSubmit = true;
 
     this.questions.forEach((q) => {
+      
+      this.examHistory.question=q;
+      this.examHistory.givenAnswer=q.givenAnswer; 
+      this.examHistory.user.id=this.curUser.id;
+      this.examHistory.correctAnswer=q.answer;
+
+
+      this.marks.user.id=this.curUser.id;
+      this.examHistory.quiz.qId=q.quiz.qId;
+      this.marks.quiz.qId=q.quiz.qId;
+
+
+      this._examHistory.addExamHistory(this.examHistory).subscribe(
+        (data:any)=>{
+          console.log(data);
+        },
+        (error)=>{
+          alert(error);
+        }
+      );
+
+
       if (q.givenAnswer == q.answer) {
         this.correctAnswer++;
         let marksSingle =
           this.questions[0].quiz.maxMarks / this.questions.length;
         this.marksGot += marksSingle;
+        
       }
 
       if (q.givenAnswer != q.answer && q.givenAnswer.trim() != '') {
@@ -117,10 +219,11 @@ export class UserStartComponent implements OnInit {
       }
     });
 
-    console.log('Correct Answer :' + this.correctAnswer);
-    console.log('Marks Got ' + this.marksGot);
-    console.log(this.questions);
-    console.log('Attempted ' + this.attempted);
-    console.log('Wrong Ans ' + this.wrongAnswer);
+
+
+
   }
+
+  
+  
 }

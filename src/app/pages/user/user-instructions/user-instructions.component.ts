@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ExamHistoryService } from 'src/app/services/exam-history.service';
+import { LoginService } from 'src/app/services/login.service';
 import { QuizService } from 'src/app/services/quiz.service';
 import Swal from 'sweetalert2';
 
@@ -12,16 +14,19 @@ export class UserInstructionsComponent implements OnInit {
 
   qId;
   quiz;
+  curUser;
+  examHistoryCounter=[];
 
   constructor(
     private _route:ActivatedRoute,
     private _quiz:QuizService,
     private _router:Router, 
+    private _examHistory:ExamHistoryService,
+    private _currentUser:LoginService
   ) { }
 
   ngOnInit(): void {
     this.qId=this._route.snapshot.params.qid;
-    
     this._quiz.getQuiz(this.qId).subscribe(
       (data:any)=>{
         this.quiz=data;
@@ -30,6 +35,32 @@ export class UserInstructionsComponent implements OnInit {
         console.log(error);
         alert("error in loading quiz data");
       }
+    );
+
+    //getCurrent User
+    this._currentUser.getCurrentUser().subscribe(
+      (data:any) =>{
+        this.curUser=data;
+        this.examHistoryDataFun();
+        
+      },
+      (error)=>{
+        console.log(error.error.message);
+        
+      }
+    );
+  }
+
+  //exaam history
+  examHistoryDataFun(){
+    this._examHistory.getExamHistoryByUserAndQuiz(this.curUser.id,this.qId).subscribe((data:any)=>{
+      
+      this.examHistoryCounter=data;
+  
+    },
+    (error)=>{
+      alert(error);
+    }
     );
   }
 

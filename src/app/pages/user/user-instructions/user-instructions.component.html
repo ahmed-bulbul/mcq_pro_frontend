@@ -1,6 +1,7 @@
 <div class="bootstrap-wrapper">
     <div class="container">
-        <div class="row">
+        <!-- {{examHistoryCounter | json}} -->
+        <div class="row" *ngIf="examHistoryCounter.length==0">
             <div class="col-md-12">
                 <mat-card class="mt20">
                     <mat-card-header>
@@ -54,14 +55,26 @@
                         
                     <mat-card-actions class="text-center">
                         <!-- Action -->
-                        <button 
+                        <button
                             (click)="startQuiz()"
                              mat-raised-button color="primary">
                              Start Quiz
                         </button>
+
                     </mat-card-actions>
                 </mat-card>
             </div>
+        </div>
+        <div class="row" *ngIf="examHistoryCounter.length!=0">
+            <mat-card>
+                <mat-card-header>
+                    <h2>আপনি অলরেডি পরীক্ষা দিয়ে ফেলেছেন । অনুগ্রহ করে ফলাফলের জন্য অপেক্ষা করুন ! ধন্যবাদ 
+                        <span> <button mat-raised-button color="primary" [routerLink]="'/user-dashboard'">Home</button></span>
+                    </h2> 
+                
+                    
+                </mat-card-header>
+            </mat-card>
         </div>
     </div>
 </div>

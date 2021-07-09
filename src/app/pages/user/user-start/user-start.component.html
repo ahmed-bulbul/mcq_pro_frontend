@@ -4,12 +4,12 @@
         <div class="row">
             <div class="col-md-2">
                 <!-- instructions -->
-                <h3>instruction</h3>
+                <p>ok</p>
             </div>
             <div class="col-md-8">
                 <!-- questions -->
                 <ng-container *ngIf="questions">
-                    <h1 *ngIf="questions[0].quiz " class="mt20">On Going Quizz : <b>{{ questions[0].quiz.title }}</b></h1>
+                    <h1 *ngIf="questions[0].quiz " class="mt20">পরীক্ষা চলছে: <b>{{ questions[0].quiz.title }}</b></h1>
                 </ng-container>
 
                 <mat-card *ngFor="let q of questions;let i=index" class="mt10">
@@ -48,7 +48,7 @@
                 </div>
 
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2" *ngIf="questions">
                 <!-- progress --> 
                 <mat-card  style="margin-top:70px;">
                     <mat-card-header>
@@ -84,6 +84,7 @@
                     <h1>Corrent Answer : {{correctAnswer}}</h1>
                     <h1>Questions attemted : {{attempted}}</h1>
                     <h1>Wrong Answer : {{wrongAnswer}}</h1>
+                    
                 </mat-card-content>
                 <mat-card-actions class="text-center">
                         <button mat-raised-button color="primary">Print</button>
@@ -93,3 +94,6 @@
         </div>
     </div>
 </div>
+
+
+

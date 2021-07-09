@@ -51,7 +51,7 @@ import { UserLoadQuizComponent } from './pages/user/user-load-quiz/user-load-qui
 import { UserStartComponent } from './pages/user/user-start/user-start.component';
 import { UserInstructionsComponent } from './pages/user/user-instructions/user-instructions.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-
+import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 
 
 @NgModule({
@@ -108,6 +108,11 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatDatepickerModule,
     MatNativeDateModule,
     MatProgressSpinnerModule,
+    NgxUiLoaderModule,
+    NgxUiLoaderHttpModule.forRoot({
+      showForeground: true,
+      
+    }),
     
   ],
   providers: [authInterceptorProviders],

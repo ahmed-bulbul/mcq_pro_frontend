@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit {
     password: '',
   };
   loginSuccess: boolean=false;
-  showSpinner: boolean=false;
 
   constructor(
     private snack: MatSnackBar, private login: LoginService,private router:Router,public dialog: MatDialog
@@ -30,7 +29,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   formSubmit() {
-    this.showSpinner=true;
     console.log('Login button click');
 
     if (
@@ -65,7 +63,6 @@ export class LoginComponent implements OnInit {
         this.login.getCurrentUser().subscribe((user:any)=>{
             this.login.setUser(user);
             console.log(user);
-            this.showSpinner=false;
             this.loginSuccess=true;
             //redirect ..ADMIN: admin-dashboard
             //redirect ..NORMAL normal-user
@@ -92,7 +89,6 @@ export class LoginComponent implements OnInit {
       (error) => {
         console.log('Error !');
         console.log(error);
-        this.showSpinner=false;
         this.snack.open(error.error.message,'ok',{
           duration:3000,
         })
